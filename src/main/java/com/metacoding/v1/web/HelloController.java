@@ -13,14 +13,27 @@ public class HelloController {
 
     @GetMapping("/aws/v1")
     public String hello(@RequestParam(defaultValue = "1") Integer number){
+        /*
+        * 로그의 3가지 경우가 찍힘
+        *   엔드포인트 주소 "/aws/v1" 뒤의 paramater "number"의 값을 "1,-1,0" 에 따라서
+        *   info, error, warn 종류가 찍힘.
+        * */
+
+        /*
+            내가 파리미터 별로 HTML태크 출력값을 다르게 해놓았음.
+         */
+        String returnString="<h1>aws v1</h1>";
         if(number == 1){ // info 로그
             log.info("/aws/v1 이 호출되었어요. info 로그 #####################################");
+            returnString ="<h1>aws v1</h1></br><h3>parameter=1, info 로그가 찍힐 겁니다.</h3>";
         }else if(number == -1){ // error 로그
             log.error("/aws/v1 이 호출되었어요. error 로그 #####################################");
+            returnString ="<h1>aws v1</h1></br><h3>parameter=1, error 로그가 찍힐 겁니다.</h3>";
         }else if(number == 0){ // warn 로그
             log.warn("/aws/v1 이 호출되었어요. warn 로그 #####################################");
+            returnString ="<h1>aws v1</h1></br><h3>parameter=1, warn 로그가 찍힐 겁니다.</h3>";
         }
         
-        return "<h1>aws v1</h1>";
+        return returnString;
     }
 }
