@@ -18,6 +18,6 @@ public class HelloControllerTest {
     @Test
     public void hello_테스트(){
         ResponseEntity<String> response = restTemplate.getForEntity("/aws/v1", String.class);       
-        assertEquals("<h1>aws v1</h1>", response.getBody());
+        assertEquals("<h1>aws v1</h1></br><h3>parameter=1, info 로그가 찍힐 겁니다.</h3>", response.getBody());
     }
 }
